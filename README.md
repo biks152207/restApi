@@ -16,3 +16,4 @@ Steps:
 * /Register - (requires `req.body.username` and `req.body.email` and `req.body.password` and `req.body.name`)
 * /Authenticate - (requires `req.body.username` and `req.body.password`)
 * /ValidateEmail - (requires `req.body.emailId`)
+* /NearByBussiness - (requires `req.query.lang` , `req.query.lat` and requires token as `req.body.token` or `req.query.token` or `req.header.x-access-token`)
