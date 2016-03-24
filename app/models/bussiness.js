@@ -37,4 +37,6 @@ var businessSchema = mongoose.Schema({
       }
 });
 
+businessSchema.index({ "latlng" : "2dsphere"});
+
 module.exports = mongoose.model('Business', businessSchema);

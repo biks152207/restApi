@@ -32,6 +32,33 @@ module.exports = function(route){
     }
   })
 
+  route.get('/NearByBussiness', tokenMiddleware, function(req, res){
+    if (req.query.lat && req.query.long){
+      var coords = [];
+      coords[0] = Number(req.query.lat);
+      coords[1] = Number(req.query.long);
+      bussiness.find(
+       { latlng :
+           { $near :
+              {
+                $geometry : { coordinates : coords}}
+           }
+        },
+        function(err,staches) {
+            return res.json({
+              success: 1,
+              data: staches
+            })
+        }
+    );
+    }else{
+      return res.json({
+        success: 0,
+        message: 'Please provide langitude and latitude'
+      })
+    }
+  })
+
   route.get('/FeaturedBusinesses', tokenMiddleware, function(req, res){
     if (req.query.current_location){
       bussiness.find({location:{ "$regex": req.query.current_location, "$options": "i" }})
