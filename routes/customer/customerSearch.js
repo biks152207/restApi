@@ -1,4 +1,6 @@
 var tokenMiddleware = require('../../config/token');
+var jwt = require('jsonwebtoken');
+var config = require('../../config/config');
 var customer = require('../../app/models/customerSearch');
 var faker = require('faker');
 var category = require('../../app/models/categories');
@@ -81,22 +83,25 @@ module.exports = function(route){
   })
 
   route.get('/Favourites', tokenMiddleware, function(req, res){
-    if (req.query.customer_id){
-      Favourites.find({customer_id: req.query.customer_id}, function(err, result){
-        if (result){
-          return res.json({
-            success: 1,
-            data: result
-          })
-        }
-      })
-    }else{
-      return res.json({
-        status: 0,
-        message: 'Please provide query string customer_id'
-      })
-    }
+    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    jwt.verify(token, config.secret, function(err, decoded) {
+        req.user = decoded.$__.scope;
+        Favourites.find({customer_id: req.user.id}, function(err, result){
+          if (result){
+            return res.json({
+              success: 1,
+              data: result
+            })
+          }
+        })
+
+    });
+
   });
+
+  route.post('/Favourites', tokenMiddleware, function(req, res){
+    console.log(req.user);
+  })
 
   route.delete('/DeleteFavourites', tokenMiddleware, function(req, res){
     if (req.body.favourite_id){

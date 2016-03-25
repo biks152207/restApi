@@ -15,6 +15,8 @@ var customerSchema = mongoose.Schema({
 	  	phone_no        : String,
 	  	gender          : String,
 	  	profileImageURL : String,
+      resetPasswordToken : String,
+      resetPasswordExpires: String,
 	  	social_links: {
 	    	fb_url: String,
 	    	twitter_url: String,

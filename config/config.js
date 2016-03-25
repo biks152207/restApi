@@ -5,5 +5,7 @@ module.exports = {
     clientID: '1471961006407950',
     clientSecret: '5839c60eb339f5ca89e48d25bbae8fff',
     callbackURL: 'http://localhost:8080/auth/facebook/callbackURL'
-  }
+  },
+  gmailUser: 'bikramofficialmail@gmail.com',
+  gmailPassword: 'beatles12'
 }

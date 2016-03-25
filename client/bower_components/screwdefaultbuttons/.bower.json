@@ -1,0 +1,14 @@
+{
+  "name": "screwdefaultbuttons",
+  "homepage": "https://github.com/mattSOLANO/ScrewDefaultButtonsV2",
+  "_release": "8976f80d44",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "8976f80d44e062861f633cb82783e50598f613c6"
+  },
+  "_source": "git://github.com/mattSOLANO/ScrewDefaultButtonsV2.git",
+  "_target": "*",
+  "_originalSource": "screwdefaultbuttons",
+  "_direct": true
+}
