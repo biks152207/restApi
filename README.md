@@ -14,7 +14,7 @@ Steps:
 * /Deals - (get request with `req.query.current_location` and  token as `req.body.token` or `req.query.token` or `req.header.x-access-token`)
 * /DealDetails/:advertisement_id - (get request with `req.params.advertisement_id` and  token as `req.body.token` or `req.query.token` or `req.header.x-access-token`)
 * /Register - (post request with `req.body.username` and `req.body.email` and `req.body.password` and `req.body.name`)
-* /Authenticate - (post request `req.body.username` and `req.body.password`)
+* /Authenticate - (post request `req.body.email` and `req.body.password`)
 * /ValidateEmail - (post request with `req.body.emailId`)
 * /NearByBussiness - (post request with `req.query.lang` , `req.query.lat` and requires token as `req.body.token` or `req.query.token` or `req.header.x-access-token`)
 *  /Favourites (post request with `req.body.business_id` and requires token as `req.body.token` or `req.query.token` or `req.header.x-access-token`)
