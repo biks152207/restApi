@@ -7,13 +7,14 @@ module.exports = function(req, res, next) {
     if (token) {
         jwt.verify(token, config.secret, function(err, decoded) {
             if (err) {
+
                 res.status(401);
                 return res.json({
                     success: 0,
                     message: 'Failed to authenticate token.'
                 });
             } else {
-                req.user = decoded.$__.scope;
+                req.user = decoded._doc;
                 next();
             }
         });

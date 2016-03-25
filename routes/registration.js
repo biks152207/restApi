@@ -61,8 +61,8 @@ module.exports = function(route, passport){
   })
 
   route.post('/Authenticate', function(req, res){
-    if (req.body.username && req.body.password){
-      customer.findOne({username: req.body.username}, function(err, result){
+    if (req.body.email && req.body.password){
+      customer.findOne({email: req.body.email}, function(err, result){
         if(err){
           res.json({success: 0, message: 'Something went wrong!'})
         }else{
@@ -72,11 +72,15 @@ module.exports = function(route, passport){
               res.json({success: 0, message: 'Something went wrong' });
             }
             if (isMatch){
+              var token = jwt.sign(result, config.secret, {
+                  expiresInMinutes: 1440 //expires in 24 hrs
+              });
               res.status(200)
               return res.json({
                 success: 1,
                 message: 'Successfully logged In',
-                data: result
+                data: result,
+                token: token
               });
             }else{
               res.json({

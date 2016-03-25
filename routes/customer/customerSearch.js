@@ -100,7 +100,30 @@ module.exports = function(route){
   });
 
   route.post('/Favourites', tokenMiddleware, function(req, res){
-    console.log(req.user);
+    if (req.body.business_id){
+      var fav = new Favourites({
+        customer_id: req.user._id,
+        business_id: req.body.business_id
+      })
+      fav.save(function(err){
+        if (err){
+          return res.json({
+            success: 0,
+            message: 'Something went wrong'
+          })
+        }else{
+          return res.json({
+            success:1,
+            message: 'Successfully added to favourite list'
+          })
+        }
+      })
+    }else{
+      return res.json({
+        success:0,
+        message: 'Please provide business id'
+      })
+    }
   })
 
   route.delete('/DeleteFavourites', tokenMiddleware, function(req, res){
